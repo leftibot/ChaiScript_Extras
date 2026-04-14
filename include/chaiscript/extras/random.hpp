@@ -9,20 +9,20 @@
 namespace chaiscript {
   namespace extras {
     namespace random {
-      class Random_Engine {
+      class MT19937_Engine {
       public:
-        Random_Engine()
+        MT19937_Engine()
           : m_engine(std::random_device{}())
         {
         }
 
-        explicit Random_Engine(unsigned int t_seed)
+        explicit MT19937_Engine(unsigned int t_seed)
           : m_engine(t_seed)
         {
         }
 
-        Random_Engine(const Random_Engine &) = default;
-        Random_Engine &operator=(const Random_Engine &) = default;
+        MT19937_Engine(const MT19937_Engine &) = default;
+        MT19937_Engine &operator=(const MT19937_Engine &) = default;
 
         void seed(unsigned int t_seed) {
           m_engine.seed(t_seed);
@@ -44,16 +44,16 @@ namespace chaiscript {
 
       ModulePtr bootstrap(ModulePtr m = std::make_shared<Module>())
       {
-        m->add(user_type<Random_Engine>(), "Random_Engine");
-        m->add(constructor<Random_Engine ()>(), "Random_Engine");
-        m->add(constructor<Random_Engine (unsigned int)>(), "Random_Engine");
-        m->add(constructor<Random_Engine (const Random_Engine &)>(), "Random_Engine");
+        m->add(user_type<MT19937_Engine>(), "MT19937_Engine");
+        m->add(constructor<MT19937_Engine ()>(), "MT19937_Engine");
+        m->add(constructor<MT19937_Engine (unsigned int)>(), "MT19937_Engine");
+        m->add(constructor<MT19937_Engine (const MT19937_Engine &)>(), "MT19937_Engine");
 
-        m->add(fun(&Random_Engine::seed), "seed");
-        m->add(fun(&Random_Engine::random_int), "random_int");
-        m->add(fun(&Random_Engine::random_float), "random_float");
+        m->add(fun(&MT19937_Engine::seed), "seed");
+        m->add(fun(&MT19937_Engine::random_int), "random_int");
+        m->add(fun(&MT19937_Engine::random_float), "random_float");
 
-        m->add(fun([](Random_Engine &t_lhs, const Random_Engine &t_rhs) -> Random_Engine & {
+        m->add(fun([](MT19937_Engine &t_lhs, const MT19937_Engine &t_rhs) -> MT19937_Engine & {
           t_lhs = t_rhs;
           return t_lhs;
         }), "=");

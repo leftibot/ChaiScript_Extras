@@ -15,7 +15,8 @@
  *
  * To allow selecting indexes from split(), ensure the vector of strings type is added:
  *
- *     chai.add(chaiscript::bootstrap::standard_library::vector_type<std::vector<std::string>>("VectorString"));
+ *     auto m = chaiscript::extras::string_methods::bootstrap();
+ *     chai.add(m);
  */
 
 #ifndef CHAISCRIPT_EXTRAS_STRING_METHODS_HPP_
@@ -176,6 +177,8 @@ namespace chaiscript {
         m->add(fun(includesChar), "includes");
         m->add(fun(trimStart), "trimStart");
         m->add(fun(trimEnd), "trimEnd");
+
+        chaiscript::bootstrap::standard_library::vector_type<std::vector<std::string>>("VectorString", *m);
 
         return m;
       }

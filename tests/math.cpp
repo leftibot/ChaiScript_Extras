@@ -11,8 +11,7 @@
 TEST_CASE( "Math namespace works", "[math]" ) {
   auto mathlib = chaiscript::extras::math::bootstrap();
 
-  auto stdlib = chaiscript::Std_Lib::library();
-  chaiscript::ChaiScript chai(stdlib);
+  chaiscript::ChaiScript chai;
   chai.add(mathlib);
 
   // Trig
@@ -42,8 +41,7 @@ TEST_CASE( "Math namespace works", "[math]" ) {
 TEST_CASE( "Math functions work", "[math]" ) {
   auto mathlib = chaiscript::extras::math::bootstrap();
 
-  auto stdlib = chaiscript::Std_Lib::library();
-  chaiscript::ChaiScript chai(stdlib);
+  chaiscript::ChaiScript chai;
   chai.add(mathlib);
 
   // TRIG FUNCTIONS

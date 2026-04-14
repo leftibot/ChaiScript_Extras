@@ -8,8 +8,7 @@
 
 TEST_CASE( "string_methods functions work", "[string_methods]" ) {
   // Create the ChaiScript environment with stdlib available.
-  auto stdlib = chaiscript::Std_Lib::library();
-  chaiscript::ChaiScript chai(stdlib);
+  chaiscript::ChaiScript chai;
 
   // Add the string_methods module.
   auto stringmethods = chaiscript::extras::string_methods::bootstrap();

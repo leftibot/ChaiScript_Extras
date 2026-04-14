@@ -826,119 +826,117 @@ namespace chaiscript {
         isunordered<bool, float, float>(m);
         isunordered<bool, long double, long double>(m);
 
-        // Create math namespace object
-        m->eval("def math_type::math_type() {}");
+        // Create math namespace
+        m->eval("namespace(\"math\")");
 
         // TRIG FUNCTIONS
-        m->eval("def math_type::cos(x) { return cos(x) }");
-        m->eval("def math_type::sin(x) { return sin(x) }");
-        m->eval("def math_type::tan(x) { return tan(x) }");
-        m->eval("def math_type::acos(x) { return acos(x) }");
-        m->eval("def math_type::asin(x) { return asin(x) }");
-        m->eval("def math_type::atan(x) { return atan(x) }");
-        m->eval("def math_type::atan2(x, y) { return atan2(x, y) }");
+        m->eval("math.cos = fun(x) { return cos(x) }");
+        m->eval("math.sin = fun(x) { return sin(x) }");
+        m->eval("math.tan = fun(x) { return tan(x) }");
+        m->eval("math.acos = fun(x) { return acos(x) }");
+        m->eval("math.asin = fun(x) { return asin(x) }");
+        m->eval("math.atan = fun(x) { return atan(x) }");
+        m->eval("math.atan2 = fun(x, y) { return atan2(x, y) }");
 
         // HYPERBOLIC FUNCTIONS
-        m->eval("def math_type::cosh(x) { return cosh(x) }");
-        m->eval("def math_type::sinh(x) { return sinh(x) }");
-        m->eval("def math_type::tanh(x) { return tanh(x) }");
+        m->eval("math.cosh = fun(x) { return cosh(x) }");
+        m->eval("math.sinh = fun(x) { return sinh(x) }");
+        m->eval("math.tanh = fun(x) { return tanh(x) }");
 
 #ifndef CHAISCRIPT_EXTRAS_MATH_SKIP_ADVANCED
-        m->eval("def math_type::acosh(x) { return acosh(x) }");
-        m->eval("def math_type::asinh(x) { return asinh(x) }");
-        m->eval("def math_type::atanh(x) { return atanh(x) }");
+        m->eval("math.acosh = fun(x) { return acosh(x) }");
+        m->eval("math.asinh = fun(x) { return asinh(x) }");
+        m->eval("math.atanh = fun(x) { return atanh(x) }");
 #endif
 
         // EXPONENTIAL AND LOGARITHMIC FUNCTIONS
-        m->eval("def math_type::exp(x) { return exp(x) }");
-        m->eval("def math_type::frexp(x, y) { return frexp(x, y) }");
-        m->eval("def math_type::ldexp(x, y) { return ldexp(x, y) }");
-        m->eval("def math_type::log(x) { return log(x) }");
-        m->eval("def math_type::log10(x) { return log10(x) }");
-        m->eval("def math_type::modf(x, y) { return modf(x, y) }");
+        m->eval("math.exp = fun(x) { return exp(x) }");
+        m->eval("math.frexp = fun(x, y) { return frexp(x, y) }");
+        m->eval("math.ldexp = fun(x, y) { return ldexp(x, y) }");
+        m->eval("math.log = fun(x) { return log(x) }");
+        m->eval("math.log10 = fun(x) { return log10(x) }");
+        m->eval("math.modf = fun(x, y) { return modf(x, y) }");
 
 #ifndef CHAISCRIPT_EXTRAS_MATH_SKIP_ADVANCED
-        m->eval("def math_type::exp2(x) { return exp2(x) }");
-        m->eval("def math_type::expm1(x) { return expm1(x) }");
-        m->eval("def math_type::ilogb(x) { return ilogb(x) }");
-        m->eval("def math_type::log1p(x) { return log1p(x) }");
-        m->eval("def math_type::log2(x) { return log2(x) }");
-        m->eval("def math_type::logb(x) { return logb(x) }");
-        m->eval("def math_type::scalbn(x, y) { return scalbn(x, y) }");
-        m->eval("def math_type::scalbln(x, y) { return scalbln(x, y) }");
+        m->eval("math.exp2 = fun(x) { return exp2(x) }");
+        m->eval("math.expm1 = fun(x) { return expm1(x) }");
+        m->eval("math.ilogb = fun(x) { return ilogb(x) }");
+        m->eval("math.log1p = fun(x) { return log1p(x) }");
+        m->eval("math.log2 = fun(x) { return log2(x) }");
+        m->eval("math.logb = fun(x) { return logb(x) }");
+        m->eval("math.scalbn = fun(x, y) { return scalbn(x, y) }");
+        m->eval("math.scalbln = fun(x, y) { return scalbln(x, y) }");
 #endif
 
         // POWER FUNCTIONS
-        m->eval("def math_type::pow(x, y) { return pow(x, y) }");
-        m->eval("def math_type::sqrt(x) { return sqrt(x) }");
+        m->eval("math.pow = fun(x, y) { return pow(x, y) }");
+        m->eval("math.sqrt = fun(x) { return sqrt(x) }");
 
 #ifndef CHAISCRIPT_EXTRAS_MATH_SKIP_ADVANCED
-        m->eval("def math_type::cbrt(x) { return cbrt(x) }");
-        m->eval("def math_type::hypot(x, y) { return hypot(x, y) }");
+        m->eval("math.cbrt = fun(x) { return cbrt(x) }");
+        m->eval("math.hypot = fun(x, y) { return hypot(x, y) }");
 
         // ERROR AND GAMMA FUNCTIONS
-        m->eval("def math_type::erf(x) { return erf(x) }");
-        m->eval("def math_type::erfc(x) { return erfc(x) }");
-        m->eval("def math_type::tgamma(x) { return tgamma(x) }");
-        m->eval("def math_type::lgamma(x) { return lgamma(x) }");
+        m->eval("math.erf = fun(x) { return erf(x) }");
+        m->eval("math.erfc = fun(x) { return erfc(x) }");
+        m->eval("math.tgamma = fun(x) { return tgamma(x) }");
+        m->eval("math.lgamma = fun(x) { return lgamma(x) }");
 #endif
 
         // ROUNDING AND REMAINDER FUNCTIONS
-        m->eval("def math_type::ceil(x) { return ceil(x) }");
-        m->eval("def math_type::floor(x) { return floor(x) }");
-        m->eval("def math_type::fmod(x, y) { return fmod(x, y) }");
+        m->eval("math.ceil = fun(x) { return ceil(x) }");
+        m->eval("math.floor = fun(x) { return floor(x) }");
+        m->eval("math.fmod = fun(x, y) { return fmod(x, y) }");
 
 #ifndef CHAISCRIPT_EXTRAS_MATH_SKIP_ADVANCED
-        m->eval("def math_type::trunc(x) { return trunc(x) }");
-        m->eval("def math_type::round(x) { return round(x) }");
-        m->eval("def math_type::lround(x) { return lround(x) }");
-        m->eval("def math_type::llround(x) { return llround(x) }");
-        m->eval("def math_type::rint(x) { return rint(x) }");
-        m->eval("def math_type::lrint(x) { return lrint(x) }");
-        m->eval("def math_type::llrint(x) { return llrint(x) }");
-        m->eval("def math_type::nearbyint(x) { return nearbyint(x) }");
-        m->eval("def math_type::remainder(x, y) { return remainder(x, y) }");
-        m->eval("def math_type::remquo(x, y, z) { return remquo(x, y, z) }");
+        m->eval("math.trunc = fun(x) { return trunc(x) }");
+        m->eval("math.round = fun(x) { return round(x) }");
+        m->eval("math.lround = fun(x) { return lround(x) }");
+        m->eval("math.llround = fun(x) { return llround(x) }");
+        m->eval("math.rint = fun(x) { return rint(x) }");
+        m->eval("math.lrint = fun(x) { return lrint(x) }");
+        m->eval("math.llrint = fun(x) { return llrint(x) }");
+        m->eval("math.nearbyint = fun(x) { return nearbyint(x) }");
+        m->eval("math.remainder = fun(x, y) { return remainder(x, y) }");
+        m->eval("math.remquo = fun(x, y, z) { return remquo(x, y, z) }");
 
         // FLOATING-POINT MANIPULATION FUNCTIONS
-        m->eval("def math_type::copysign(x, y) { return copysign(x, y) }");
-        m->eval("def math_type::nan(x) { return nan(x) }");
-        m->eval("def math_type::nextafter(x, y) { return nextafter(x, y) }");
-        m->eval("def math_type::nexttoward(x, y) { return nexttoward(x, y) }");
+        m->eval("math.copysign = fun(x, y) { return copysign(x, y) }");
+        m->eval("math.nan = fun(x) { return nan(x) }");
+        m->eval("math.nextafter = fun(x, y) { return nextafter(x, y) }");
+        m->eval("math.nexttoward = fun(x, y) { return nexttoward(x, y) }");
 
         // MINIMUM, MAXIMUM, DIFFERENCE FUNCTIONS
-        m->eval("def math_type::fdim(x, y) { return fdim(x, y) }");
-        m->eval("def math_type::fmax(x, y) { return fmax(x, y) }");
-        m->eval("def math_type::fmin(x, y) { return fmin(x, y) }");
+        m->eval("math.fdim = fun(x, y) { return fdim(x, y) }");
+        m->eval("math.fmax = fun(x, y) { return fmax(x, y) }");
+        m->eval("math.fmin = fun(x, y) { return fmin(x, y) }");
 
         // OTHER FUNCTIONS
-        m->eval("def math_type::fabs(x) { return fabs(x) }");
+        m->eval("math.fabs = fun(x) { return fabs(x) }");
 #endif
 
-        m->eval("def math_type::abs(x) { return abs(x) }");
+        m->eval("math.abs = fun(x) { return abs(x) }");
 
 #ifndef CHAISCRIPT_EXTRAS_MATH_SKIP_ADVANCED
-        m->eval("def math_type::fma(x, y, z) { return fma(x, y, z) }");
+        m->eval("math.fma = fun(x, y, z) { return fma(x, y, z) }");
 
         // CLASSIFICATION FUNCTIONS
-        m->eval("def math_type::fpclassify(x) { return fpclassify(x) }");
+        m->eval("math.fpclassify = fun(x) { return fpclassify(x) }");
 #endif
 
-        m->eval("def math_type::isfinite(x) { return isfinite(x) }");
-        m->eval("def math_type::isinf(x) { return isinf(x) }");
-        m->eval("def math_type::isnan(x) { return isnan(x) }");
-        m->eval("def math_type::isnormal(x) { return isnormal(x) }");
-        m->eval("def math_type::signbit(x) { return signbit(x) }");
+        m->eval("math.isfinite = fun(x) { return isfinite(x) }");
+        m->eval("math.isinf = fun(x) { return isinf(x) }");
+        m->eval("math.isnan = fun(x) { return isnan(x) }");
+        m->eval("math.isnormal = fun(x) { return isnormal(x) }");
+        m->eval("math.signbit = fun(x) { return signbit(x) }");
 
         // COMPARISON FUNCTIONS
-        m->eval("def math_type::isgreater(x, y) { return isgreater(x, y) }");
-        m->eval("def math_type::isgreaterequal(x, y) { return isgreaterequal(x, y) }");
-        m->eval("def math_type::isless(x, y) { return isless(x, y) }");
-        m->eval("def math_type::islessequal(x, y) { return islessequal(x, y) }");
-        m->eval("def math_type::islessgreater(x, y) { return islessgreater(x, y) }");
-        m->eval("def math_type::isunordered(x, y) { return isunordered(x, y) }");
-
-        m->eval("global math = math_type()");
+        m->eval("math.isgreater = fun(x, y) { return isgreater(x, y) }");
+        m->eval("math.isgreaterequal = fun(x, y) { return isgreaterequal(x, y) }");
+        m->eval("math.isless = fun(x, y) { return isless(x, y) }");
+        m->eval("math.islessequal = fun(x, y) { return islessequal(x, y) }");
+        m->eval("math.islessgreater = fun(x, y) { return islessgreater(x, y) }");
+        m->eval("math.isunordered = fun(x, y) { return isunordered(x, y) }");
 
         return m;
       }

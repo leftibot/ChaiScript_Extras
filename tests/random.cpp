@@ -6,43 +6,70 @@
 #include <chaiscript/chaiscript_stdlib.hpp>
 #include "../include/chaiscript/extras/random.hpp"
 
-TEST_CASE( "Random functions work", "[random]" ) {
+TEST_CASE( "Random_Engine type is usable in ChaiScript", "[random]" ) {
   auto randomlib = chaiscript::extras::random::bootstrap();
 
   auto stdlib = chaiscript::Std_Lib::library();
   chaiscript::ChaiScript chai(stdlib);
   chai.add(randomlib);
 
-  SECTION("rand() returns a non-negative integer") {
-    const auto result = chai.eval<int>("rand()");
+  SECTION("default constructor creates a valid engine") {
+    const auto result = chai.eval<int>("var rng = Random_Engine(); rng.random_int(0, 100)");
     CHECK(result >= 0);
+    CHECK(result <= 100);
   }
 
-  SECTION("rand(max) returns a value in [0, max]") {
-    const auto result = chai.eval<int>("rand(10)");
+  SECTION("seeded constructor creates a valid engine") {
+    const auto result = chai.eval<int>("var rng = Random_Engine(42u); rng.random_int(0, 100)");
     CHECK(result >= 0);
-    CHECK(result <= 10);
+    CHECK(result <= 100);
   }
 
-  SECTION("rand(min, max) returns a value in [min, max]") {
-    const auto result = chai.eval<int>("rand(5, 10)");
+  SECTION("seed produces deterministic sequences") {
+    chai.eval("var rng = Random_Engine()");
+    chai.eval("rng.seed(42u)");
+    const auto first = chai.eval<int>("rng.random_int(0, 1000)");
+    chai.eval("rng.seed(42u)");
+    const auto second = chai.eval<int>("rng.random_int(0, 1000)");
+    CHECK(first == second);
+  }
+
+  SECTION("copy constructor copies engine state") {
+    chai.eval("var rng = Random_Engine(99u)");
+    chai.eval("var rng2 = Random_Engine(rng)");
+    const auto a = chai.eval<int>("rng.random_int(0, 1000)");
+    const auto b = chai.eval<int>("rng2.random_int(0, 1000)");
+    CHECK(a == b);
+  }
+
+  SECTION("assignment copies engine state") {
+    chai.eval("var rng = Random_Engine(77u)");
+    chai.eval("var rng2 = Random_Engine()");
+    chai.eval("rng2 = rng");
+    const auto a = chai.eval<int>("rng.random_int(0, 1000)");
+    const auto b = chai.eval<int>("rng2.random_int(0, 1000)");
+    CHECK(a == b);
+  }
+
+  SECTION("random_int returns values in range") {
+    chai.eval("var rng = Random_Engine(42u)");
+    const auto result = chai.eval<int>("rng.random_int(5, 10)");
     CHECK(result >= 5);
     CHECK(result <= 10);
   }
 
-  SECTION("srand(seed) produces deterministic results") {
-    chai.eval("srand(42)");
-    const auto first = chai.eval<int>("rand(0, 1000)");
-    chai.eval("srand(42)");
-    const auto second = chai.eval<int>("rand(0, 1000)");
-    CHECK(first == second);
+  SECTION("random_float returns values in range") {
+    chai.eval("var rng = Random_Engine(42u)");
+    const auto result = chai.eval<double>("rng.random_float(0.0, 1.0)");
+    CHECK(result >= 0.0);
+    CHECK(result < 1.0);
   }
 
-  SECTION("rand() with same seed is deterministic") {
-    chai.eval("srand(123)");
-    const auto a = chai.eval<int>("rand()");
-    chai.eval("srand(123)");
-    const auto b = chai.eval<int>("rand()");
-    CHECK(a == b);
+  SECTION("different seeds produce different sequences") {
+    chai.eval("var rng1 = Random_Engine(1u)");
+    chai.eval("var rng2 = Random_Engine(2u)");
+    const auto a = chai.eval<int>("rng1.random_int(0, 1000000)");
+    const auto b = chai.eval<int>("rng2.random_int(0, 1000000)");
+    CHECK(a != b);
   }
 }

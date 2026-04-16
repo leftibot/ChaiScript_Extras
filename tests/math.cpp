@@ -3,7 +3,6 @@
 #include "catch.hpp"
 
 #include <chaiscript/chaiscript.hpp>
-#include <chaiscript/chaiscript_stdlib.hpp>
 #include "../include/chaiscript/extras/math.hpp"
 
 #include <iostream>
@@ -11,8 +10,7 @@
 TEST_CASE( "Math functions work", "[math]" ) {
   auto mathlib = chaiscript::extras::math::bootstrap();
 
-  auto stdlib = chaiscript::Std_Lib::library();
-  chaiscript::ChaiScript chai(stdlib);
+  chaiscript::ChaiScript chai;
   chai.add(mathlib);
 
   // TRIG FUNCTIONS

@@ -3,17 +3,14 @@
 #include "catch.hpp"
 
 #include <chaiscript/chaiscript.hpp>
-#include <chaiscript/chaiscript_stdlib.hpp>
 #include "../include/chaiscript/extras/string_methods.hpp"
 
 TEST_CASE( "string_methods functions work", "[string_methods]" ) {
   // Create the ChaiScript environment with stdlib available.
-  auto stdlib = chaiscript::Std_Lib::library();
-  chaiscript::ChaiScript chai(stdlib);
+  chaiscript::ChaiScript chai;
 
   // Add the string_methods module.
   auto stringmethods = chaiscript::extras::string_methods::bootstrap();
-  chai.add(chaiscript::bootstrap::standard_library::vector_type<std::vector<std::string>>("StringVector"));
   chai.add(stringmethods);
 
   // replace(string, string)

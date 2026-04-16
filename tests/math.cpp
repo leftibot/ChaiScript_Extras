@@ -9,10 +9,9 @@
 #include <iostream>
 
 TEST_CASE( "Math namespace works", "[math]" ) {
-  auto mathlib = chaiscript::extras::math::bootstrap();
-
   chaiscript::ChaiScript chai;
-  chai.add(mathlib);
+  chaiscript::extras::math::bootstrap_namespace(chai);
+  chai.eval(R"(import("math"))");
 
   // Trig
   CHECK(chai.eval<double>("math.cos(0.5)") == std::cos(0.5));

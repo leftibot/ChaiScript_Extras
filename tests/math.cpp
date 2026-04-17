@@ -3,7 +3,6 @@
 #include "catch.hpp"
 
 #include <chaiscript/chaiscript.hpp>
-#include <chaiscript/chaiscript_stdlib.hpp>
 #include "../include/chaiscript/extras/math.hpp"
 
 #include <iostream>
